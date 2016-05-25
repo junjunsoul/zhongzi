@@ -480,8 +480,14 @@
 .pt-page-rotateInNewspaper {
 	-webkit-transform-origin: 50% 50%;
 	transform-origin: 50% 50%;
-	-webkit-animation: rotateInNewspaper .5s both ease-out;
-	animation: rotateInNewspaper .5s both ease-out;
+	/*1s linear 0s normal both infinite running rotateIn*/
+	-webkit-animation:1s linear 0s normal both infinite running rotateIn;
+	animation:1s linear 0s normal both infinite running rotateIn;
+}
+
+.rotateIn {
+    -webkit-animation-name: rotateIn;
+    animation-name: rotateIn
 }
 
 /* push */
@@ -809,7 +815,41 @@
 	40% { -webkit-transform: rotateX(-15deg); transform: rotateX(-15deg); opacity: .8; -webkit-animation-timing-function: ease-out; animation-timing-function: ease-out; }
 	100% { -webkit-transform: scale(0.8) translateZ(-200px); transform: scale(0.8) translateZ(-200px); opacity:0; }
 }
+@-webkit-keyframes rotateIn {
+    from {
+        -webkit-transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg)
+    }
+}
 
+@-moz-keyframes rotateIn {
+    from {
+        -moz-transform: rotate(0deg)
+    }
+    to {
+        -moz-transform: rotate(359deg)
+    }
+}
+
+@-o-keyframes rotateIn {
+    from {
+        -o-transform: rotate(0deg)
+    }
+    to {
+        -o-transform: rotate(359deg)
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(359deg)
+    }
+}
 /* flip */
 
 @-webkit-keyframes flipOutRight {
