@@ -163,3 +163,66 @@
     $.fn[eventName] = function(callback){ return this.on(eventName, callback) }
   })
 })(Zepto)
+ $(function(){
+        var now = { row:0}, last = { row:0};
+        const towards = { up:1, down:3};
+        document.addEventListener('touchmove',function(event){event.preventDefault(); },false);
+        var isAnimating = false;
+
+        $(document).swipeUp(function(){
+            if (isAnimating) return;
+            last.row = now.row;
+            if (last.row != 7) {
+                now.row = last.row+1;
+                pageMove(towards.up);
+            }else{
+                last.row =1; 
+                now.row=0;
+                pageMove(towards.up);
+            }
+        });
+
+        $(document).swipeDown(function(){
+            if (isAnimating) return;
+            last.row = now.row;
+            if (last.row!=0) { 
+                now.row = last.row-1;
+                pageMove(towards.down);
+             }else{
+                last.row =0; 
+                now.row=7;
+                pageMove(towards.down);
+            }
+        });
+        function pageMove(tw){
+            var lastPage =last.row,
+                nowPage = now.row;
+            
+            switch(tw) {
+                case towards.up:
+                    outClass = 'pt-page-moveToTop';
+                    inClass = 'pt-page-moveFromBottom';
+                    break;
+                case towards.down:
+                    outClass = 'pt-page-moveToBottom';
+                    inClass = 'pt-page-moveFromTop';
+                    break;
+            }
+            isAnimating = true;
+            var item=$(".nr>section");
+            item.removeClass('z-current');
+            $(item[nowPage]).addClass('z-current');
+
+            $(item[lastPage]).addClass(outClass);
+            $(item[nowPage]).addClass(inClass);
+            $('.progress>span').width((nowPage+1)*40);
+            $('.page-tip').html(nowPage+1+'/8');            
+            setTimeout(function(){
+                $(item[lastPage]).removeClass('page-current');
+                $(item[lastPage]).removeClass(outClass);
+                $(item[lastPage]).removeClass('z-current');
+                $(item[nowPage]).removeClass(inClass);
+                isAnimating = false;
+            },600);
+        }
+    });
