@@ -1,6 +1,7 @@
 /* animation sets */
 
 /* move from / to  */
+.hide{ display:none;}
 
 .pt-page-moveToLeft {
 	-webkit-animation: moveToLeft .6s ease both;
