@@ -307,7 +307,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             'images/{,*/}*.*',
-            '{,*/}*.html',
+            '{,*/}*.*',
             'styles/fonts/{,*/}*.*'
           ]
         }]
@@ -349,9 +349,9 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+     // 'wiredep',
       'concurrent:server',
-      'postcss',
+     // 'postcss',
       'browserSync:livereload',
       'watch'
     ]);
