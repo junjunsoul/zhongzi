@@ -215,7 +215,8 @@
 
             $(item[lastPage]).addClass(outClass);
             $(item[nowPage]).addClass(inClass);
-            $('.progress>span').width((nowPage+1)*40);
+            var width=$(document).width()/8;
+            $('.progress>span').width((nowPage+1)*width);
             $('.page-tip').html(nowPage+1+'/8');            
             setTimeout(function(){
                 $(item[lastPage]).removeClass('page-current');
